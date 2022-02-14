@@ -8,7 +8,6 @@ const constraints = {
 let canvas = document.getElementById('canvas');
 let ctx = canvas.getContext('2d');
 
-
 let canvas2 = document.getElementById('canvas2');
 let ctx2 = canvas2.getContext('2d');
 
@@ -19,9 +18,9 @@ navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
     perform();
 });
 
-const density = "Ñ@#W$9876543210?!abc;:+=-,._1                    ";
+const density = "Ñ@#W$9876543210?!abc;:+=-,._  ";
 // const density = '       .:-i|=+%O#@'
-let vx = 50;
+let vx = 100;
 let vy = 50;
 let main = () => {
     fillData();
@@ -33,17 +32,29 @@ function convertRange( value, r1, r2 ) {
 }
 console.log(canvas.width);
 
+canvas2.width = 100;
+canvas2.height = 50;
+
+const toGrayScale = (r, g, b) => 0.21 * r + 0.72 * g + 0.07 * b;
+
+ctx2up = true;
+imgData = '';
+
 let fillData = () => {
+
+    let img = document.getElementById('image');
+    img.src = canvas.toDataURL();
+    img.style.width = '100px';
+
+    ctx2.drawImage(img, 0, 0, 100, 50);
+
     let line = '';
     for(let y = 0; y < vy; y++) {
         for(let x = 0; x < vx; x++) {
             let pixel = ctx2.getImageData(x, y, 1, 1).data;
-            let avg = (pixel[0] + pixel[1] + pixel[2]) / 3;
-
+            let avg = toGrayScale(pixel[0], pixel[1], pixel[2]);
 
             let char = density.charAt(Math.floor(convertRange(avg, [0, 255], [0, density.length])));
-            // ctx2.fillStyle = `rgb(${pixel[0] / 3}, ${pixel[1] / 3}, ${pixel[2] / 3})`;
-            // ctx2.fillRect(x, y, 1, 1);
 
             if (char === ' ') {
                 char = '&nbsp;';
@@ -53,9 +64,7 @@ let fillData = () => {
         line += '</br>';
     }
 
-    // perform();
     document.getElementById('ascii').innerHTML = line;
-    // ctx.getImageData(x, y, 1, 1);
 }
 
 async function perform() {
@@ -68,11 +77,7 @@ function segmentBodyInRealTime() {
         const multiPersonSegmentation = await estimateSegmentation();
         const foregroundColor = {r: 255, g: 255, b: 255, a: 0};
         const backgroundColor = {r: 255, g: 255, b: 255, a: 255};
-        const mask = bodyPix.toMask(
-            multiPersonSegmentation, foregroundColor, backgroundColor,
-            false);
-
-        // const mask = bodyPix.toColoredPartMask(multiPersonSegmentation, false);
+        const mask = bodyPix.toMask(multiPersonSegmentation, foregroundColor, backgroundColor, false);
 
         bodyPix.drawMask(canvas, video,mask, 1, 0, 1);
 
@@ -85,14 +90,6 @@ function segmentBodyInRealTime() {
 async function estimateSegmentation() {
     return await net.segmentPerson(video);
 }
-
-
-window.addEventListener('load', async function() {
-    // perform();
-})
-
-
-
 
 main();
 

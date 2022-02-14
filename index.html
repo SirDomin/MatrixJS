@@ -8,11 +8,11 @@
         html, body{
             background: black;
             font-family: 'Courier';
-            color: white;
-            font-size: 8px;
+            color: limegreen;
+            font-size: 12px;
         }
         .hidden {
-            /*display: none;*/
+            display: none;
         }
 
         #container {
@@ -22,10 +22,11 @@
         #ascii {
             margin: auto;
         }
-        canvas {
-            /*width: 240px;*/
-            /*height: 240px;*/
+        #canvas2 {
+            width: 50px;
+            height: 50px;
         }
+
         video {
             -webkit-transform: scaleX(-1);
             transform: scaleX(-1);
@@ -33,18 +34,29 @@
     </style>
 </head>
 <body>
-<!-- Load TensorFlow.js -->
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.2"></script>
-<!-- Load BodyPix -->
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.0"></script>
 
-</script>
-    <video class="hidden" width="400" height="400" id="video" autoplay></video>
-    <img id="image" />
-    <canvas class="hidden" id="canvas"></canvas>
-    <canvas class="hidden" id="canvas2"></canvas>
+    <canvas class="hidden" id="canvas2" width="64" height="48"></canvas>
+    <canvas class="hidden" id="canvas3" width="100" height="100"></canvas>
+    <img class="hidden" id="image"/>
+    <div style="width: 100%; display:flex">
+        <div style="margin: auto; font-size: 30px">
+            <div style="float:left; margin: 10px">
+                <div>Preview:</div>
+                <video class="" width="400" height="400" id="video" autoplay></video>
+            </div>
+            <div style="float:left; margin: 10px">
+                <div>Cropped:</div>
+                <canvas class="" id="canvas"></canvas>
+            </div>
+        </div>
+    </div>
     <div id="container">
-        <div id="ascii"></div>
+        <div style="margin: auto">
+            <div style="font-size: 20px">ASCII</div>
+            <div id="ascii"></div>
+        </div>
     </div>
     <script src="src/script.js"></script>
 </body>
