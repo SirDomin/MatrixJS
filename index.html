@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        html, body{
+            background: black;
+            font-family: 'Courier';
+            color: white;
+            font-size: 8px;
+        }
+        .hidden {
+            /*display: none;*/
+        }
+
+        #container {
+            display: flex;
+            width: 100%;
+        }
+        #ascii {
+            margin: auto;
+        }
+        canvas {
+            /*width: 240px;*/
+            /*height: 240px;*/
+        }
+        video {
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+        }
+    </style>
+</head>
+<body>
+<!-- Load TensorFlow.js -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.2"></script>
+<!-- Load BodyPix -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.0"></script>
+
+</script>
+    <video class="hidden" width="400" height="400" id="video" autoplay></video>
+    <img id="image" />
+    <canvas class="hidden" id="canvas"></canvas>
+    <canvas class="hidden" id="canvas2"></canvas>
+    <div id="container">
+        <div id="ascii"></div>
+    </div>
+    <script src="src/script.js"></script>
+</body>
+</html>
