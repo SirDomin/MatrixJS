@@ -15,8 +15,11 @@ const video = document.querySelector("video");
 
 navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
     video.srcObject = stream;
-    perform();
 });
+
+video.addEventListener('loadeddata', () => {
+    perform();
+})
 
 const density = "Ñ@#W$9876543210?!abc;:+=-,._  ";
 // const density = '       .:-i|=+%O#@'
@@ -37,7 +40,6 @@ canvas2.height = 50;
 
 const toGrayScale = (r, g, b) => 0.21 * r + 0.72 * g + 0.07 * b;
 
-ctx2up = true;
 imgData = '';
 
 let fillData = () => {
