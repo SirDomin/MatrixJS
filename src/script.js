@@ -22,9 +22,10 @@ video.addEventListener('loadeddata', () => {
 })
 
 const density = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!lI;:,\"^`'.    ";
-// const density = '       .:-i|=+%O#@'
+
 let vx = 100;
 let vy = 50;
+
 let main = () => {
     fillData();
     requestAnimationFrame(main);
