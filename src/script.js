@@ -21,7 +21,8 @@ video.addEventListener('loadeddata', () => {
     perform();
 })
 
-const density = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!lI;:,\"^`'.    ";
+// const density = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!lI;:,\"^`'.    ";
+const density = "@@@@@@@@@@@@%%%%%%%%#########********+++++++++====    ";
 
 let vx = 100;
 let vy = 50;
